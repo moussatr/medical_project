@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Questionnaire{% endblock %}
+
+{% block body %}
+ <link rel="stylesheet" href="{{ asset('css/page.css') }}">
+    
+            {% if user.question is null %}
+            
+            <h2>Veuillez répondre au questionnaire</h2>
+           
+
+           {{ include('questionnaire/_form.html.twig') }}
+        
+            {% else %}
+
+            <h2>Vous avez déjà répondu</h2>
+            {% endif %}
+
+       
+
+ 
+{% endblock %}

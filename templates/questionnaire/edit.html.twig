@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier questionnaire{% endblock %}
+
+{% block body %}
+      <link rel="stylesheet" href="{{ asset('css/page.css') }}">
+    <h1>Modifier questionnaire</h1>
+
+    {{ include('questionnaire/_form.html.twig', {'button_label': 'Mise à jour'}) }}
+
+    {{ include('questionnaire/_delete_form.html.twig') }}
+{% endblock %}

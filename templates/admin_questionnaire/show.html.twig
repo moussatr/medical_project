@@ -1,0 +1,199 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Questionnaire{% endblock %}
+
+{% block body %}
+      <link rel="stylesheet" href="{{ asset('css/page.css') }}">
+    <h1>Questionnaire</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ questionnaire.id }}</td>
+            </tr>
+            <tr>
+                <th>Pseudo</th>
+                <td>{{ questionnaire.Pseudo }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ questionnaire.Nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ questionnaire.Prenom }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ questionnaire.Adresse }}</td>
+            </tr>
+            <tr>
+                <th>Code_Postal</th>
+                <td>{{ questionnaire.CodePostal }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ questionnaire.Telephone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ questionnaire.Email }}</td>
+            </tr>
+            <tr>
+                <th>Date_Naissance</th>
+                <td>{{ questionnaire.DateNaissance ? questionnaire.DateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Sexe</th>
+                <td>{{ questionnaire.Sexe }}</td>
+            </tr>
+            <tr>
+                <th>Origine</th>
+                <td>{{ questionnaire.Origine }}</td>
+            </tr>
+            <tr>
+                <th>Poids</th>
+                <td>{{ questionnaire.Poids }}</td>
+            </tr>
+            <tr>
+                <th>Poids_Stable</th>
+                <td>{{ questionnaire.PoidsStable }}</td>
+            </tr>
+            <tr>
+                <th>Taille</th>
+                <td>{{ questionnaire.Taille }}</td>
+            </tr>
+            <tr>
+                <th>Composition_Foyer</th>
+                <td>{{ questionnaire.CompositionFoyer }}</td>
+            </tr>
+            <tr>
+                <th>Stuation_famille</th>
+                <td>{{ questionnaire.StuationFamille }}</td>
+            </tr>
+            <tr>
+                <th>Nb_Enfants</th>
+                <td>{{ questionnaire.NbEnfants }}</td>
+            </tr>
+            <tr>
+                <th>Proches_Malades</th>
+                <td>{{ questionnaire.ProchesMalades }}</td>
+            </tr>
+            <tr>
+                <th>Profession</th>
+                <td>{{ questionnaire.Profession }}</td>
+            </tr>
+            <tr>
+                <th>Stress</th>
+                <td>{{ questionnaire.Stress }}</td>
+            </tr>
+            <tr>
+                <th>Trajet_du_travail</th>
+                <td>{{ questionnaire.TrajetDuTravail }}</td>
+            </tr>
+            <tr>
+                <th>Sport</th>
+                <td>{{ questionnaire.Sport }}</td>
+            </tr>
+            <tr>
+                <th>Fatigue</th>
+                <td>{{ questionnaire.Fatigue }}</td>
+            </tr>
+            <tr>
+                <th>Lors_Reveil</th>
+                <td>{{ questionnaire.LorsReveil ? questionnaire.LorsReveil|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Fumer_Vous</th>
+                <td>{{ questionnaire.FumerVous }}</td>
+            </tr>
+            <tr>
+                <th>Depuis_Age</th>
+                <td>{{ questionnaire.DepuisAge }}</td>
+            </tr>
+            <tr>
+                <th>Cosommation_alcool</th>
+                <td>{{ questionnaire.CosommationAlcool }}</td>
+            </tr>
+            <tr>
+                <th>Consommation_Stimulants</th>
+                <td>{{ questionnaire.ConsommationStimulants }}</td>
+            </tr>
+            <tr>
+                <th>Manger</th>
+                <td>{{ questionnaire.Manger }}</td>
+            </tr>
+            <tr>
+                <th>Alimentaire_Principale</th>
+                <td>{{ questionnaire.AlimentairePrincipale ? questionnaire.AlimentairePrincipale|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Traitement</th>
+                <td>{{ questionnaire.Traitement }}</td>
+            </tr>
+            <tr>
+                <th>Lequel</th>
+                <td>{{ questionnaire.Lequel }}</td>
+            </tr>
+            <tr>
+                <th>Hypertension</th>
+                <td>{{ questionnaire.Hypertension }}</td>
+            </tr>
+            <tr>
+                <th>En_An_Debut</th>
+                <td>{{ questionnaire.EnAnDebut }}</td>
+            </tr>
+            <tr>
+                <th>Diabetique</th>
+                <td>{{ questionnaire.Diabetique }}</td>
+            </tr>
+            <tr>
+                <th>Diabete_Type</th>
+                <td>{{ questionnaire.DiabeteType }}</td>
+            </tr>
+            <tr>
+                <th>Traitement_Conteceptif</th>
+                <td>{{ questionnaire.TraitementConteceptif }}</td>
+            </tr>
+            <tr>
+                <th>Prener_Tension</th>
+                <td>{{ questionnaire.PrenerTension }}</td>
+            </tr>
+            <tr>
+                <th>Dernier_Tension</th>
+                <td>{{ questionnaire.DernierTension }}</td>
+            </tr>
+            <tr>
+                <th>Diastolique</th>
+                <td>{{ questionnaire.Diastolique }}</td>
+            </tr>
+            <tr>
+                <th>Frenquence_Cardiaque</th>
+                <td>{{ questionnaire.FrenquenceCardiaque }}</td>
+            </tr>
+            <tr>
+                <th>Suivi_Cardio</th>
+                <td>{{ questionnaire.SuiviCardio }}</td>
+            </tr>
+            <tr>
+                <th>Medecin_Traitant</th>
+                <td>{{ questionnaire.MedecinTraitant }}</td>
+            </tr>
+            <tr>
+                <th>IMC</th>
+                <td>{{ questionnaire.IMC }}</td>
+            </tr>
+            <tr>
+                <th>Date_Reponse</th>
+                <td>{{ questionnaire.DateReponse ? questionnaire.DateReponse|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_questionnaire_index') }}">Retounrner à la liste</a>
+
+    <a href="{{ path('app_admin_questionnaire_edit', {'id': questionnaire.id}) }}">Modifier</a>
+
+    {{ include('admin_questionnaire/_delete_form.html.twig') }}
+{% endblock %}

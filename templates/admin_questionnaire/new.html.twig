@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Questionnaire{% endblock %}
+
+{% block body %}
+      <link rel="stylesheet" href="{{ asset('css/page.css') }}">
+    <h1>Créer un Questionnaire</h1>
+
+    {{ include('admin_questionnaire/_form.html.twig') }}
+
+    <a href="{{ path('app_admin_questionnaire_index') }}">Retourner à la liste</a>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+      
+
+
+    <div class="container">
+      <link rel="stylesheet" href="{{ asset('css/acueil.css') }}">
+        <div class="row">
+            <div >
+                <h3>Étudiez votre risque d'hypertension</h3>
+                    <p>
+                        L’hypertension artérielle (HTA) est l’un des principaux facteurs de risque cardiovasculaire, 
+                        c’est-à-dire qu’elle augmente fortement les risques de développer complications cardiovasculaires (AVC, 
+                        infarctus du myocarde, insuffisance rénale, artériopathie des membres inférieurs…).
+                        Elle est le premier facteur de risque de l’accident vasculaire cérébral (AVC) et est responsable de 51% des AVC dans le monde.
+                        Qu’est-ce que l’hypertension artérielle ?
+                        Le cœur se contracte, comme une pompe, 
+                        pour propulser le sang dans toutes les artères de l’organisme. 
+                        Le sang, en circulation,  exerce alors une pression ou tension sur la paroi des artères. 
+                        Avec l’âge et d’autres facteurs de risque (tabagisme, surpoids…) la paroi des artères devient plus rigide et s’épaissit, 
+                        ce qui conduit à une augmentation de la pression artérielle. Lorsque la pression artérielle est trop élevée et persistante sur la paroi des artères, 
+                        on parle d’hypertension artérielle.
+                        La mesure de deux valeurs permet de caractériser l’hypertension artérielle : la pression artérielle systolique (PAS) et la pression artérielle diastolique (PAD)
+                        A terme, cette hypertension fatigue le cœur et fragilise les artères.
+                        
+                    </p>
+                    <h3>CONFIDENTIALITÉ</h3>
+                    <p>Ce questionnaire est totalement confidentiel et n'est destiné qu'à permettre d'assister et d'accompagner les patients souhaitant s'assurer de leur risque d'hypertension et des conséquences associées.
+                            Ce questionnaire reste la propriété de l'institut IOSAFE et de l'Institut pour
+                            la Prévention et le Traitement des Accidents Cardiovasculaires
+                            Sur votre demande, les présentes informations pourront être modifiées ou supprimées
+                   </p>  
+            </div>
+            {# <div class="col-md-6">
+                <div id="medical-animation">
+                    
+                </div>
+            </div> #}
+        </div>
+    </div>
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/medical-animation.js') }}"></script>
+{% endblock %}
+
+
+
+ {% if is_granted('IS_AUTHENTICATED') %}
+        <a class="  mb-5 btn btn-primary" href="{{ path('app_questionnaire_new') }}">Repondre au questionnaire</a>  
+      {% endif %}
+
+  
+
+{% endblock %}

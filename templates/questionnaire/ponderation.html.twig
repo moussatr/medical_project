@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ asset('css/acueil.css') }}">
+<h2>Tableau de pondération</h2>
+<table class="table table-striped table-hover mt-5 mb-5 pt-5 pb-5" >
+        <tbody>
+
+            <tr >
+                <th scope="col">#</th>
+                <th scope="col">Ponderation</td>
+            </tr>
+            {% for item1, item in ponderation %}
+             <tr>
+                <td scope="row">{{ item1|raw }}</th>
+                <td scope="row">{{ item|raw }}</td>
+            </tr>
+             {% endfor %}
+        </tbody>    
+</table>
+<div class="  mb-5 btn btn-outline-success">
+   <a href="{{ path('app_questionnaire_edit', {'id': questionnaire.id}) }}">Modier ma reponse</a>
+  
+</div>
+<div class="  mb-5 btn btn-outline-success">
+   <a href="{{ path('app_questionnaire_show', {'id': questionnaire.id}) }}">Voir ma reponse</a>
+</div>
+ 
+
+
+{% endblock %}            

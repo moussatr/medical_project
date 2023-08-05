@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ asset('css/acueil.css') }}">
+<h2>Veuillez trouvez votre rapport d'impression</h2>
+<div class="mt-5 mb-5 pt-5 pb-5">
+    <p >{{ resultText|raw  }}</p>
+</div>
+
+<div class="  mb-5 btn btn-outline-success">
+   <a href="{{ path('app_questionnaire_edit', {'id': questionnaire.id}) }}">Modier ma reponse</a>
+</div>
+<div class="  mb-5 btn btn-outline-success">
+   <a href="{{ path('app_questionnaire_show', {'id': questionnaire.id}) }}">Voir ma reponse</a>
+</div>
+ 
+ 
+
+
+{% endblock %}            
