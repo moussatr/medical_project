@@ -20,7 +20,7 @@ class QuestionnaireController extends AbstractController
     public function index(QuestionnaireRepository $questionnaireRepository): Response
     {
         
-        return $this->render('questionnaire/home.html.twig', [
+        return $this->render('home/index.html.twig', [
         //   'questionnaires' => $questionnaireRepository->findAll(),
         ]);
     }
@@ -162,13 +162,28 @@ class QuestionnaireController extends AbstractController
         
         $fumer = $questionnaire->getFumerVous();
 
-        if($fumer = 'NON') {
-            $fumerVous='Le tabagisme est l\'un des facteur agravant lié aux risques d\'hypertension. Votre tabagisme modéré peu par conséquent provoqué une dégradation de votre hypertension.';
-        }else
-        {
-          $fumerVous=  'Le tabagisme est l\'un des facteur agravant lié aux risques d\'hypertension. Votre tabagisme confirmé représente donc un risque élevé, soit de survenance d\'une hypertension soit d\'une agraavation de celle-ci. Des mesures pour diminuer, voir arrêté de fumer est un point essentiel de votre programme de traitement';
-        }
+        $fumerVous = 0;
+        if ($fumer == 'NON') {
+            $fumerVous = 0;
+        } elseif ($fumer == 'OUI UN PEU') {
+            $fumerVous = 0.25;
+        } elseif ($fumer == 'OUI BEAUCOUP') {
+            $fumerVous = 1;
+        } elseif ($fumer == 'OUI ENORMEMENT') {
+            $fumerVous = 2;
+        } 
+          
 
+        $fum = '';
+        if ($fumerVous == 0) {
+            $fum = '';
+        }
+        elseif($fumerVous == 0.25) {
+            $fum='Le tabagisme est l’un des facteur agravant lié aux risques d’hypertension. Votre tabagisme modéré peu par conséquent provoqué une dégradation de votre hypertension.';
+        }elseif($fumerVous > 0.26)
+        {
+          $fum=  'Le tabagisme est l’un des facteur agravant lié aux risques d’hypertension. Votre tabagisme confirmé représente donc un risque élevé, soit de survenance d’une hypertension soit d’une agraavation de celle-ci. Des mesures pour diminuer, voir arrêté de fumer est un point essentiel de votre programme de traitement';
+        }
 
         // Générez le texte de résultat en fonction de l'IMC calculé
         // Utilisez $gender, $date et $bmi pour personnaliser le texte
@@ -198,20 +213,20 @@ class QuestionnaireController extends AbstractController
         }
          $sup='';
         if($orig>1){
-            $sup = 'Comme le shéla l\'indique au verso, il se peut que votre profil régional puisse être un facteur à l\'origine d\'une augmentation de votre risque d\'hypertension. Cette corélation résulte
+            $sup = 'Comme le shéla l’indique au verso, il se peut que votre profil régional puisse être un facteur à l’origine d’une augmentation de votre risque d’hypertension. Cette corélation résulte
             fréqquemment des tendances culinnaires de chaque région (alimentation plus ou moins grasse et plus ou moins salée selon les régions.';
         }
          
         $sport = $questionnaire->getSport();
         $spo = "";
         if ($sport == 'NON') {
-            $spo = 1.5;
-        } elseif ($sport == 'OUI TRES OCCASIONNELEMENT') {
             $spo = 0;
+        } elseif ($sport == 'OUI TRES OCCASIONNELEMENT') {
+            $spo = 0.5;
         } elseif ($sport == 'OUI FREQUEMMENT') {
             $spo = 1;
         } elseif ($sport == 'OUI TRES FREQUEMMENT (AU MOINS DEUX FOIS PAR SEMAINE)') {
-            $spo = 3;
+            $spo = 2;
         } 
 
         $category = '';
@@ -220,34 +235,34 @@ class QuestionnaireController extends AbstractController
         if ($bmi < 16) {
             $category = 'situation de maigreur extrême';
         } elseif ($bmi >= 16 && $bmi < 18.5) {
-            $category = 'situation d\'insuffisance pondérale';
+            $category = 'situation d’insuffisance pondérale';
         } elseif ($bmi >= 18.5 && $bmi < 25) {
             $category = 'situation de corpulence normale';
         } elseif ($bmi >= 25 && $bmi < 30) {
             $category = 'situation de surpoids';
         } elseif ($bmi >= 30 && $bmi < 35) {
-            $category = 'situation d\'obésité';
+            $category = 'situation d’obésité';
         } elseif ($bmi >= 35 && $bmi < 40) {
-            $category = 'situation d\'obésité sévère';
+            $category = 'situation d’obésité sévère';
         } elseif ($bmi >= 40) {
-            $category = 'situation d\'obésité morbide';
+            $category = 'situation d’obésité morbide';
         }
         if ($bmi < 25 && $spo< 1) {
-            $category1 = 'Compte tenu de votre index IMC, l\'absence d`\'une activité sportive régulière 
-            renforce le risque d\'agravation de votre hypertension. A ce sujet nous indiquons qu\'il 
+            $category1 = 'Compte tenu de votre index IMC, l’absence d’une activité sportive régulière 
+            renforce le risque d’agravation de votre hypertension. A ce sujet nous indiquons qu’il 
             serait important que vous puissiez vous organiser afin de pratiquer une activité sportive 
-            et qu\'il serait bon que celle-ci puisse faire l\'objet d\'un suivi.';
+            et qu’il serait bon que celle-ci puisse faire l’objet d’un suivi.';
         }
         $resultText = "Prénom : {$questionnaire->getPrenom()}<br />  " ;
         $resultText .= "Nom : {$questionnaire->getNom()} <br /> <br /><br />";
         $resultText .= "Email : {$questionnaire->getEmail()}<br />";
         $resultText .= "Téléphone : {$questionnaire->getTelephone()}<br /><br /><br />";
         $resultText .= "{$gender},<br /><br /> Vous avez répondu le {$date} à un questionnaire sur les risques d'hypertension artérielle (HTA) en intégrant une série d'informations personnelles.<br /><br />";
-        $resultText .= "Votre test fait apparaître\n  un indice de masse corporelle (IMC) de {$bmi}, ce qui vous place en {$category}.<br /><br />
-        L\'indice de masse corporelle (IMC) est \n  le seul indice validé par l\'Organisation mondiale de la santé pour évaluer la corpulence d\'un individu et donc les éventuels risques pour la santé
-        Selon votre age et votre rapport taille/poid, \n votre index d'IMC devrait se trouver entre {$gender1}.<br /><br /> 
+        $resultText .= "Votre test fait apparaître un indice de masse corporelle (IMC) de {$bmi}, ce qui vous place en {$category}.<br /><br />
+        L’indice de masse corporelle (IMC) est le seul indice validé par l’Organisation mondiale de la santé pour évaluer la corpulence d’un individu et donc les éventuels risques pour la santé
+        Selon votre age et votre rapport taille/poid, votre index d'IMC devrait se trouver entre {$gender1}.<br /><br /> 
         {$sup}<br /><br />
-        {$category1}<br /><br /> {$fumerVous} ";
+        {$category1}<br /><br /> {$fum} ";
         
         return $resultText;
        
@@ -318,7 +333,7 @@ class QuestionnaireController extends AbstractController
             $category2 = 1.5;
         } elseif ($nbEnfants == 4) {
             $category2 = 1.2;
-        } elseif ($nbEnfants == 0) {
+        } elseif ($nbEnfants == 5) {
             $category2 = 1.5;
         } 
 
@@ -405,7 +420,7 @@ class QuestionnaireController extends AbstractController
             $category8 = 1;
         } 
 
-        $cat1 = 0;$cat2 = 0;$cat3 = 0;$cat4 = 0;$cat5 = 0;$cat6 = 0;$cat7 = 0;
+        $cat1 = 1;$cat2 = 0;$cat3 = 0;$cat4 = 1;$cat5 = 0;$cat6 = 0;$cat7 = 0;
         if (empty($reveil) == 'MAUX DE TÊTE') {
             $cat1 = 1;
         } if (empty($reveil) == 'VERTIGE') {
@@ -423,7 +438,7 @@ class QuestionnaireController extends AbstractController
         } $resul=$cat1+$cat2+$cat3+$cat4+$cat5+$cat6+$cat7;
  
 
-        $cate1 = 0;$cate2 = 0;$cate3 = 0;$cate4 = 0;$cate5 = 0;
+        $cate1 = 1;$cate2 = 0;$cate3 = 1;$cate4 = 0;$cate5 = 1;
         if (empty($aliment) == 'RESTAURANT') {
             $cate1 = 1;
         } if (empty($aliment)  == 'FAST FOOD / PLATS PREPARES GRANDE SURFACE') {
@@ -511,7 +526,7 @@ class QuestionnaireController extends AbstractController
             'Origine' => $category,
             '<strong>SITUATION FOYER</strong>'=>$category1+$category2+$category3,
             'Vous étes' => $category1,
-            'Nombre d\'enfant du foyer' => $category2,
+            'Nombre d’enfant du foyer' => $category2,
             'Combien de vos proches parants souffrent (ou souffraient-ils) d’hypertension ?' => $category3,
             '<strong>SITUATION PROFESSIONNELLE</strong>'=>$category4+$category5+$category6,
             'Votre profesion ' => $category4,
@@ -523,7 +538,7 @@ class QuestionnaireController extends AbstractController
             'Lors du réveil ressentez vous ? (plusieurs choix possible)' => $resul,
             'Fumez vous' => $category9,
             'Depuis quel age' => $category10,
-            'Votre consommation d\'alcool est plutot' => $category11,
+            'Votre consommation d’alcool est plutot' => $category11,
             'Votre consommation de stimulants' => $category12,
             'Avez vous tendance a manger sale ?' => $category13,
             'Votre tendance alimentaire ' => $resul1,

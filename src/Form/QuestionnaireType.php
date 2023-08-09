@@ -13,6 +13,54 @@ class QuestionnaireType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
+        $options = [
+            '' => true,
+            '8.0' => '8.0',
+            '8.5' =>  '8.5' ,
+            '9.0' => '9.0',
+            '10.0' => '10.0',
+            '10.5'=>'10.5',
+            '11.0'=>'11.0',
+            '11.5'=>'11.5',
+            '12.0'=>'12.0',
+            '12.5'=>'12.5',
+            '13.0'=>'13.0',
+            '13.5'=>'13.5',
+            '14.0'=>'14.0',
+            '14.5'=>'14.5',
+            '15.2'=>'15.2',
+            '15.5'=>'15.5',
+            '15.7'=>'15.7',
+            '16'=>'16',
+            '16.2'=>'16.2',
+            '16.5'=>'16.5',
+            '16.7'=>'16.7',
+            '17'=>'17',
+
+        ];
+
+        $options1 = [
+            '' => true,
+            '5.0' => '5.0',
+            '5.5 '=>  '5.5' ,
+            '6.0' => '6.0',
+            '7.0' => '7.0',
+            '7.2 '=> '7.2',
+            '7.5'=>'7.5',
+            '7.7'=>'7.7',
+            '8.0'=>'8.0',
+            '8.2'=>'8.2',
+            '8.5'=>'8.5',
+            '8.7'=>'8.7',
+            '9'=>'9',
+           ' 9.2'=>'9.2',
+            '9.5'=>'9.5',
+            '9.7'=>'9.7',
+            '10'=>'10',
+
+        ];
+
         $builder
             ->add('Pseudo', null,
             ['label' => 'PSEUDO
@@ -69,7 +117,9 @@ class QuestionnaireType extends AbstractType
             ->add('Taille', null,
             ['label' => 'VOTRE TAILLE (ENVIRON)'])
             ->add('Composition_Foyer', null,
-            ['label' => 'COMPOSITION DU FOYER'])
+            [
+                'label' => 'COMPOSITION DU FOYER',
+                'required' => false,],)
             ->add('Stuation_famille', ChoiceType::class, [
                 'label' => 'VOUS ÊTES',
                 'choices'  => [
@@ -91,9 +141,6 @@ class QuestionnaireType extends AbstractType
                     3 => 3,
                     4 =>  4,
                    5 => 5,
-                    // 'ENSEIGNANT(E)' =>  'ENSEIGNANT(E)',
-                    // 'RETRAITE' => 'RETRAITE',
-
                 ],
             
             ])
@@ -107,9 +154,6 @@ class QuestionnaireType extends AbstractType
                     3 => 3,
                     4 =>  4,
                     5 => 5,
-                  
-                    // 'ENSEIGNANT(E)' =>  'ENSEIGNANT(E)',
-                    // 'RETRAITE' => 'RETRAITE',
 
                 ],
                 
@@ -311,54 +355,14 @@ class QuestionnaireType extends AbstractType
             ->add('Dernier_Tension', ChoiceType::class, [
                 'label' => 'QUEL EST VOTRE DERNIER TENSION CONNUE ?
             SYSTOLIQUE - Le premier chiffre dans votre mesure tensionnelle en Mmg',
-                'choices'  => [
-                    '' => true,
-                    8.0 => 8.0,
-                    8.5 =>  8.5 ,
-                    9.0 => 9.0,
-                    10.0 => 10.0,
-                    10.5=>10.5,
-                    11.0=>11.0,
-                    11.5=>11.5,
-                    12.0=>12.0,
-                    12.5=>12.5,
-                    13.0=>13.0,
-                    13.5=>13.5,
-                    14.0=>14.0,
-                    14.5=>14.5,
-                    15.2=>15.2,
-                    15.5=>15.5,
-                    15.7=>15.7,
-                    16=>16,
-                    16.2=>16.2,
-                    16.5=>16.5,
-                    16.7=>16.7,
-                    17=>17,
-
-                ],
+            'choices' => $options,
+            // 'choices_as_values' => true,
             ]
             )
             ->add('Diastolique',ChoiceType::class, [
                 'label' => 'DIASTOLIQUE - Le deuxième chiffre dans votre mesure tensionnelle en Mmg',
-                'choices'  => [
-                    '' => true,
-                    5.0 => 5.0,
-                    5.5 =>  5.5 ,
-                    6.0 => 6.0,
-                    7.0 => 7.0,
-                    7.2 => 7.2,
-                    7.5=>7.5,
-                    7.7=>7.7,
-                    8.0=>8.0,
-                    8.2=>8.2,
-                    8.5=>.5,
-                    8.7=>8.7,
-                    9=>9,
-                    9.2=>9.2,
-                    9.5=>9.5,
-                    9.7=>9.7,
-                    10=>10,
-                ],
+                'choices' => $options1,
+            // 'choices_as_values' => true,
             ])
             ->add('Frenquence_Cardiaque', ChoiceType::class,
             ['label' => 'QUEL EST VOTRE FRÉQUENCE CARDIAQUE PAR MINUTE AU REPOS ?',

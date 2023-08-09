@@ -108,7 +108,7 @@
                 <td>{{ questionnaire.DateReponse ? questionnaire.DateReponse|date('Y-m-d') : '' }}</td>
                 <td>
                     <a href="{{ path('app_admin_questionnaire_show', {'id': questionnaire.id}) }}">Voir</a>
-                    <a href="{{ path('app_admin_questionnaire_edit', {'id': questionnaire.id}) }}">Modifier</a>
+                    <a href="{{ path('app_questionnaire_edit', {'id': questionnaire.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}

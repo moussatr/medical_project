@@ -193,7 +193,7 @@
 
     <a href="{{ path('app_admin_questionnaire_index') }}">Retounrner à la liste</a>
 
-    <a href="{{ path('app_admin_questionnaire_edit', {'id': questionnaire.id}) }}">Modifier</a>
+    <a href="{{ path('app_questionnaire_edit', {'id': questionnaire.id}) }}">Modifier</a>
 
     {{ include('admin_questionnaire/_delete_form.html.twig') }}
 {% endblock %}

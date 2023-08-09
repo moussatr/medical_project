@@ -192,7 +192,5 @@
     </table>
 
 
-    <a href="{{ path('app_questionnaire_edit', {'id': questionnaire.id}) }}">Modifier</a>
-
-    {{ include('admin_questionnaire/_delete_form.html.twig') }}
+    <a href="{{ path('app_questionnaire_edit', {'id': questionnaire.id}) }}" class=" btn btn-primary" >Modifier</a>
 {% endblock %}
