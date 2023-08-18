@@ -92,6 +92,7 @@ class QuestionnaireController extends AbstractController
     #[Route('/reponse', name: 'app_questionnaire_reponse', methods: ['GET', 'POST'])]
     public function showUserResponse(): Response
     {
+        
         // Vérifiez si l'utilisateur est connecté et entièrement authentifié
         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
             // L'utilisateur n'est pas connecté, redirigez-le vers la page de connexion
@@ -113,6 +114,7 @@ class QuestionnaireController extends AbstractController
             return $this->render('questionnaire/rapport.html.twig', [
                 'resultText' => $resultText,
                 'questionnaire' => $questionnaire,
+                'user' => $user, 
                 
             ]);
     }
